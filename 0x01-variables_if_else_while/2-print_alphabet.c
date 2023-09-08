@@ -3,12 +3,12 @@
 /**
  * main - main function
  *
- * return:0 always
+ * Return: always 0
  */
 
-int main(void)/* This is the main function, and it returns an integer value.*/
+int main(void)
 {
-	char al;
+	int al;
 
 	for (al = 'a' ; al <= 'z' ; al++)
 		putchar(al);
