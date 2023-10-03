@@ -14,6 +14,11 @@ char *create_array(unsigned int size, char c)
 
 	char *Carry = (char *)malloc(size * sizeof(char));
 
+
+	if (size == 0)
+	{
+		return (NULL);
+	}
 	if (Carry == NULL)
 	{
 		return (NULL);
