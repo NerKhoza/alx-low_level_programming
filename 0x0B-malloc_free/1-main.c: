@@ -1,0 +1,3 @@
+n.c:17:9: error: implicit declaration of function ‘printf’ [-Werror=implicit-function-declaration]
+   17 |         printf("failed to allocate memory\n");
+      |         ^~~~~~
