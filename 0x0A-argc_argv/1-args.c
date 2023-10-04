@@ -4,12 +4,14 @@
 /**
  * main - a program that prints the number of arguments
  * @argc: parameter 1
+ * @argv: parameter 2
  * Return: 0
  */
 
-int main(int argc)
+int main(int argc, char *argv[])
 {
-	printf("%d", argc);
+	(void) argv;
 
+	printf("%d\n", argc - 1);
 	return (0);
 }
