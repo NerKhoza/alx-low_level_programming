@@ -5,15 +5,15 @@
  * free_listint - function that frees a listint_t list
  * @head: function parameter
  */
+
 void free_listint(listint_t *head)
 {
-	listint_t *current = head;
-	listint_t *temp;
+	listint_t *next;
 
-	while (current == NULL)
+	while (head != NULL)
 	{
-		temp = current;
-		current = current->next;
-		free(temp);
+		next = head->next;
+		free(head);
+		head = next;
 	}
 }
