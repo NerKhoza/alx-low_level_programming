@@ -4,13 +4,13 @@
 /**
  * _sqrt_recursion - function that calculates the natural square root
  * @n: parameter 1
- * @low: parameter 2
- * @high: parameter 3
  * Return: -1, n, mid
  */
 
-int _sqrt_recursion(int n, int low, int high)
+int _sqrt_recursion(int n)
 {
+	int low;
+	int high;
 	int mid = low + (high - low) / 2;
 	int midSquare = mid * mid;
 
