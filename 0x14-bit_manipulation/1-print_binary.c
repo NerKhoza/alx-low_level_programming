@@ -2,21 +2,33 @@
 #include <stdio.h>
 
 /**
- * print_binary - function that prints the binary
+ * print_bi - prints the binary
  * @n: function parameter
  */
 
+void print_bi(unsigned long int n);
+
+void print_bi(unsigned long int n)
+{
+	if (n == 0)
+		return;
+	print_bi(n >> 1);
+	if ((n & 1) == 1)
+		_putchar('1');
+	if ((n & 1) == 0)
+		_putchar('0');
+}
+
+/**
+ * print_binary - function that prints the binary
+ * @n: function parameter
+ */
 void print_binary(unsigned long int n)
 {
-	int i;
-
-	int size = sizeof(unsigned long int) * 8;
-
-	for (i = size - 1; i >= 0; i--)
+	if (n == 0)
+		_putchar('0');
+	else
 	{
-		if ((n & (1UL << i)) != 0)
-			printf("1");
-		else
-			printf("0");
+		print_bi(n);
 	}
 }
