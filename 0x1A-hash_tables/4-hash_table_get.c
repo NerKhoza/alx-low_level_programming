@@ -1,27 +1,27 @@
 #include "hash_tables.h"
 
-/*
- * hash_table_get - a function that creates a hash table
+/**
+ * hash_table_get - a function that retrieves a value associated with a key
  * @ht: parameter 1
- * @Key: parameter 2
- * Return: value and NULL
+ * @key: parameter 2
+ * Return: NULL and value
  */
+
 char *hash_table_get(const hash_table_t *ht, const char *key)
 {
-	unsigned int index;
-	hash_node_t *current;
+	hash_node_t *node;
+	unsigned long int index;
 
-	index = hash_djb2((const unsigned char *) key);
+	if (ht == NULL || key == NULL || *key == '\0')
+		return (NULL);
 
-	current = ht->array[index];
+	index = key_index((const unsigned char *)key, ht->size);
+	if (index >= ht->size)
+		return (NULL);
 
-	while (current != NULL)
-	{
-		if (strcmp(current->key, key) == 0)
-		{
-			return (current->value);
-		}
-		current = current->next;
-	}
-	return (NULL);
+	node = ht->array[index];
+	while (node && strcmp(node->key, key) != 0)
+		node = node->next;
+
+	return ((node == NULL) ? NULL : node->value);
 }
