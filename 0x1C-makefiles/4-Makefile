@@ -1,54 +1,19 @@
-# Makefile for school executable
+CC = gcc
+SRC = main.c school.c
+OBJ = $(SRC:.c=.o)
+NAME = school
+RM = rm -f
+CFLAGS = -Wall -Werror -Wextra -pedantic
 
-# Compiler and flags
-CC := gcc
-CFLAGS := -Wall -Werror -Wextra -pedantic
-
-# Source files
-SRC := file1.c file2.c file3.c
-# Add more .c files as needed
-
-# Object files
-OBJ := $(SRC:.c=.o)
-
-# Executable name
-NAME := school
-
-# Program to delete files
-RM := rm -f
-
-# Rules
-.PHONY: all clean oclean fclean re
-
-all: $(NAME)
-
-$(NAME): $(OBJ)
-	$(CC) $(CFLAGS) -o $@ $^
+all: $(OBJ)
+	$(CC) $(OBJ) -o $(NAME)
 
 clean:
-	$(RM) *~ $(OBJ)
+	$(RM) *~ $(NAME)
 
 oclean:
 	$(RM) $(OBJ)
 
-fclean: clean
-	$(RM) $(NAME)
+fclean: clean oclean
 
 re: fclean all
-
-# Compilation rule for .c to .o
-%.o: %.c
-	$(CC) $(CFLAGS) -c -o $@ $<
-
-# Dependency generation
--include $(OBJ:.o=.d)
-
-# Generate dependency files (.d)
-%.d: %.c
-	$(CC) -MM $(CFLAGS) $< | sed 's,\($*\)\.o[ :]*,\1.o $@ : ,g' > $@
-
-# Remove generated files on clean
-clean:
-	$(RM) $(OBJ) $(OBJ:.o=.d)
-
-
